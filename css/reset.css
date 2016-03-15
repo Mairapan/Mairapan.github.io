@@ -1,0 +1,20 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors Your Name (you@example.org)
+ * @date    2015-03-12 17:30:46
+ * @version $Id$
+ */
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,dl,dt,dd,input{ margin:0; padding:0; outline: none;}
+body{ color: #333; font: 12px/20px "微软雅黑","宋体","Arial Narrow"; background: #fff; letter-spacing: -0.25px;}
+img{ border:none;}
+li{ list-style:none;}
+input,select,textarea{ outline:none;border:none; background:none;}
+textarea{ resize:none;}
+a{ text-decoration:none;color: #333; outline: none;}
+/*清除浮动*/
+.clearfix:after{ content:""; display:block; clear:both}
+.clearfix{ zoom:1;}
+.fl{ float:left;}
+.fr{ float:right;}
+.hide{ display:none}

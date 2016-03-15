@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://www.otsszhang.com/works/clock.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>css3钟表效果</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	.box{width: 260px; height:260px; border-radius: 50%; background: #fff; box-shadow: -2px 0px 5px 1px #000,0px -2px 5px 1px #000,2px 0px 5px 1px #000,0px 2px 5px 1px #000; position: relative; left: 550px; top: 100px; }
+	.cap{width: 16px; height: 16px; border-radius: 50%; background: red; box-shadow: -1px 0 2px 1px #000,0 -1px 2px 1px #000, 1px 0 2px 1px #000, 0 1px 2px 1px #000;  position: absolute; top:50%; left: 50%; margin: -8px 0 0 -8px; z-index: 3; }
+	.hour{ width: 10px; height: 80px; background: #000; border-radius: 50% 50% 0 0; position: absolute; top: 50%; left: 50%; margin-left: -5px; margin-top: -80px;}
+	.min{ width: 8px; height: 95px; background: #999; border-radius: 50% 50% 0 0; position: absolute; top: 50%; left: 50%; margin-left: -4px; margin-top: -95px;}
+	.sec{ width: 4px; height: 110px; 
+		background: #888; 
+		border-radius: 50% 50% 0 0; position: absolute; top: 50%; left: 50%; margin-left: -2px; margin-top: -110px;}
+	.box div{ transform-origin: center bottom;}
+	.box span{width: 2px; height: 6px ; position: absolute; left: 50%; margin-left: -1px; background: #000; transform-origin: center 130px;}
+	.box span em{ font-style: normal; width: 30px; text-align: center; position: absolute;top: 10px; left: 50%; margin-left: -15px; }
+	.box span.big{width: 3px; height: 8px;}
+	.box-sm{width: 60px; height: 60px;  border: 1px solid #999; border-radius: 50%; box-shadow: -1px 0px 1px 1px #000,0px -1px 1px 1px #000,1px 0px 1px 1px #000,0px 1px 1px 1px #000; position: absolute;  left: 50%; margin:160px 0 0 -30px;}
+	.cap-sm{width: 4px; height: 4px; border-radius: 50%; background: red; position: absolute; top:50%; left: 50%; margin: -2px 0 0 -2px; z-index: 3; }
+	.month{width: 2px; height: 23px; background: #000; border-radius: 50% 50% 0 0; position: absolute; top: 50%; left: 50%; margin-left: -1px; margin-top: -23px;}
+	.box-sm span{width: 1px; height: 2px; position: absolute; left: 50%; margin-left: -1px; background: #000; transform-origin: center 30px;}
+	.box-sm span em{font-style: normal; width: 12px; font-size: 0.5em; text-align: center; position: absolute;top: 2px; left: 50%; margin-left: -6px; }
+
+	#disc{font-size:24px; width:600px; text-align: center; position:absolute; left:50%; margin-left:-300px;}
+</style>
+<script type="text/javascript">
+	window.onload=function(){
+		var oBox=document.getElementById('box');
+		var oHour=document.getElementById('hour');
+		var oMin=document.getElementById('min');
+		var oSec=document.getElementById('sec');
+		var oMon=document.getElementById('month');
+		var oBox_sm=document.getElementById('box_sm');
+		for(var i=0;i<12;i++){
+			var oSpan=document.createElement('span');
+			oBox_sm.appendChild(oSpan);
+			oSpan.style.transform='rotate('+i*30+'deg)';
+			var n=i==0?12:i;
+			oSpan.innerHTML='<em>'+n+'</em>';
+			oSpan.children[0].style.transform='rotate('+(-i*30)+'deg)';
+		}
+
+		for(var i=0;i<60;i++){
+			var oSpan=document.createElement('span');
+			oBox.appendChild(oSpan);
+			oSpan.style.transform='rotate('+i*6+'deg)';
+			if(i%5==0){
+				var n=i/5==0?12:i/5;
+				oSpan.className='big';
+				oSpan.innerHTML='<em>'+n+'</em>';
+				oSpan.children[0].style.transform='rotate('+(-i*6)+'deg)';
+			}
+		}
+		setInterval(tick,1000);
+		function tick(){
+			var oDate=new Date();
+			var M=oDate.getMonth()+1;
+			var h=oDate.getHours();
+			var m=oDate.getMinutes();
+			var s=oDate.getSeconds();
+			var ms=oDate.getMilliseconds();
+
+			oHour.style.transform='rotate('+(h*30+m/60*30)+'deg)';
+			oMin.style.transform='rotate('+(m*6+s/60*6)+'deg)';
+			oSec.style.transform='rotate('+(s*6+ms/1000*6)+'deg)';
+			oMon.style.transform='rotate('+(M*30)+'deg)';
+		}
+		tick();
+		drag(oBox);
+		function drag(oDiv){
+			oDiv.onmousedown=function(ev){
+			var oEvent=ev || event;
+			
+			var disX=oEvent.clientX-oDiv.offsetLeft;
+			var disY=oEvent.clientY-oDiv.offsetTop;
+			
+			document.onmousemove=function(ev){
+				var oEvent=ev || event;
+				oDiv.style.left=oEvent.clientX-disX+'px';
+				oDiv.style.top=oEvent.clientY-disY+'px';	
+			}
+			document.onmouseup=function(){
+				document.onmousemove=null;
+				document.onmouseup=null;	
+				oDiv.releaseCapture && oDiv.releaseCapture();
+			}
+			oDiv.setCapture && oDiv.setCapture();
+			return false;	
+		}
+		}
+	};
+</script>
+</head>
+<body>
+	<p id="disc">可鼠标拖拽，带月份显示的css3钟表</p>
+    <div id="box" class="box">
+    	<div id="cap" class="cap"></div>
+    	<div id="hour" class="hour" style="transform: rotate(683.5deg);"></div>
+    	<div id="min" class="min" style="transform: rotate(282.4deg);"></div>
+    	<div id="sec" class="sec" style="transform: rotate(27.09deg);"></div>
+    	<div id="box_sm" class="box-sm">
+    		<div class="cap-sm"></div>
+    		<div id="month" class="month" style="transform: rotate(90deg);"></div>
+    	<span style="transform: rotate(0deg);"><em style="transform: rotate(0deg);">12</em></span><span style="transform: rotate(30deg);"><em style="transform: rotate(-30deg);">1</em></span><span style="transform: rotate(60deg);"><em style="transform: rotate(-60deg);">2</em></span><span style="transform: rotate(90deg);"><em style="transform: rotate(-90deg);">3</em></span><span style="transform: rotate(120deg);"><em style="transform: rotate(-120deg);">4</em></span><span style="transform: rotate(150deg);"><em style="transform: rotate(-150deg);">5</em></span><span style="transform: rotate(180deg);"><em style="transform: rotate(-180deg);">6</em></span><span style="transform: rotate(210deg);"><em style="transform: rotate(-210deg);">7</em></span><span style="transform: rotate(240deg);"><em style="transform: rotate(-240deg);">8</em></span><span style="transform: rotate(270deg);"><em style="transform: rotate(-270deg);">9</em></span><span style="transform: rotate(300deg);"><em style="transform: rotate(-300deg);">10</em></span><span style="transform: rotate(330deg);"><em style="transform: rotate(-330deg);">11</em></span></div>
+    <span class="big" style="transform: rotate(0deg);"><em style="transform: rotate(0deg);">12</em></span><span style="transform: rotate(6deg);"></span><span style="transform: rotate(12deg);"></span><span style="transform: rotate(18deg);"></span><span style="transform: rotate(24deg);"></span><span class="big" style="transform: rotate(30deg);"><em style="transform: rotate(-30deg);">1</em></span><span style="transform: rotate(36deg);"></span><span style="transform: rotate(42deg);"></span><span style="transform: rotate(48deg);"></span><span style="transform: rotate(54deg);"></span><span class="big" style="transform: rotate(60deg);"><em style="transform: rotate(-60deg);">2</em></span><span style="transform: rotate(66deg);"></span><span style="transform: rotate(72deg);"></span><span style="transform: rotate(78deg);"></span><span style="transform: rotate(84deg);"></span><span class="big" style="transform: rotate(90deg);"><em style="transform: rotate(-90deg);">3</em></span><span style="transform: rotate(96deg);"></span><span style="transform: rotate(102deg);"></span><span style="transform: rotate(108deg);"></span><span style="transform: rotate(114deg);"></span><span class="big" style="transform: rotate(120deg);"><em style="transform: rotate(-120deg);">4</em></span><span style="transform: rotate(126deg);"></span><span style="transform: rotate(132deg);"></span><span style="transform: rotate(138deg);"></span><span style="transform: rotate(144deg);"></span><span class="big" style="transform: rotate(150deg);"><em style="transform: rotate(-150deg);">5</em></span><span style="transform: rotate(156deg);"></span><span style="transform: rotate(162deg);"></span><span style="transform: rotate(168deg);"></span><span style="transform: rotate(174deg);"></span><span class="big" style="transform: rotate(180deg);"><em style="transform: rotate(-180deg);">6</em></span><span style="transform: rotate(186deg);"></span><span style="transform: rotate(192deg);"></span><span style="transform: rotate(198deg);"></span><span style="transform: rotate(204deg);"></span><span class="big" style="transform: rotate(210deg);"><em style="transform: rotate(-210deg);">7</em></span><span style="transform: rotate(216deg);"></span><span style="transform: rotate(222deg);"></span><span style="transform: rotate(228deg);"></span><span style="transform: rotate(234deg);"></span><span class="big" style="transform: rotate(240deg);"><em style="transform: rotate(-240deg);">8</em></span><span style="transform: rotate(246deg);"></span><span style="transform: rotate(252deg);"></span><span style="transform: rotate(258deg);"></span><span style="transform: rotate(264deg);"></span><span class="big" style="transform: rotate(270deg);"><em style="transform: rotate(-270deg);">9</em></span><span style="transform: rotate(276deg);"></span><span style="transform: rotate(282deg);"></span><span style="transform: rotate(288deg);"></span><span style="transform: rotate(294deg);"></span><span class="big" style="transform: rotate(300deg);"><em style="transform: rotate(-300deg);">10</em></span><span style="transform: rotate(306deg);"></span><span style="transform: rotate(312deg);"></span><span style="transform: rotate(318deg);"></span><span style="transform: rotate(324deg);"></span><span class="big" style="transform: rotate(330deg);"><em style="transform: rotate(-330deg);">11</em></span><span style="transform: rotate(336deg);"></span><span style="transform: rotate(342deg);"></span><span style="transform: rotate(348deg);"></span><span style="transform: rotate(354deg);"></span></div>
+
+</body></html>

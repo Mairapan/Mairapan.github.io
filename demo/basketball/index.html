@@ -1,0 +1,113 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="" />
+<meta name="copyright" content="" />
+<meta name="description" content="" />
+<title>弹性运动--篮球</title>
+<style>
+*{padding: 0; margin: 0;}
+#basket{ width: 245px; height: 266px; position: absolute; left: -10px; background: url(img/basket.jpg) no-repeat;}
+#div1{ width:75px; height:75px; border-radius:50%; position:absolute; right:500px; bottom:0px; background: url(img/ball.png) no-repeat; z-index: 2;}
+
+</style>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById('div1');
+	
+	var iSpeedX=0;
+	var iSpeedY=0;
+	
+	var lastX=0;
+	var lastY=0;
+	var timer=null;
+	
+	oDiv.onmousedown=function(ev){
+		var oEvent=ev || event;
+		
+		clearInterval(timer);
+		
+		var disX=oEvent.clientX-oDiv.offsetLeft;
+		var disY=oEvent.clientY-oDiv.offsetTop;
+		
+		document.onmousemove=function(ev){
+			var oEvent=ev || event;
+			
+			oDiv.style.left=oEvent.clientX-disX+'px';
+			oDiv.style.top=oEvent.clientY-disY+'px';
+			
+			
+			iSpeedX=oEvent.clientX-lastX;
+			iSpeedY=oEvent.clientY-lastY;
+			
+			lastX=oEvent.clientX;
+			lastY=oEvent.clientY;
+		}
+		document.onmouseup=function(){
+			document.onmousemove=null;
+			document.onmouseup=null;	
+			oDiv.releaseCapture && oDiv.releaseCapture();
+			
+			move();
+		}
+		oDiv.setCapture && oDiv.setCapture();
+		return false;	
+	}
+	
+	
+	function move(){
+		timer=setInterval(function(){
+			iSpeedY+=3;
+			
+			var l=oDiv.offsetLeft+iSpeedX;
+			var t=oDiv.offsetTop+iSpeedY;
+			
+			if(t>=document.documentElement.clientHeight-oDiv.offsetHeight){
+				t=document.documentElement.clientHeight-oDiv.offsetHeight;
+				iSpeedY*=-0.8;
+				iSpeedX*=0.8;	
+			}
+			
+			if(l>=document.documentElement.clientWidth-oDiv.offsetWidth){
+				l=document.documentElement.clientWidth-oDiv.offsetWidth;
+				iSpeedX*=-0.8;
+				iSpeedY*=0.8;
+			}
+			
+			if(t<=0){
+				t=0;
+				iSpeedY*=-0.8;
+				iSpeedX*=0.8;	
+			}
+			
+			if(l<=0){
+				l=0;
+				iSpeedX*=-0.8;	
+				iSpeedY*=0.8;
+			}
+			
+			if(Math.abs(iSpeedX)<1)iSpeedX=0;
+			if(Math.abs(iSpeedY)<1)iSpeedY=0;
+			
+			oDiv.style.left=l+'px';
+			oDiv.style.top=t+'px';
+			
+			if(iSpeedX==0 && iSpeedY==0 && t==document.documentElement.clientHeight-oDiv.offsetHeight){
+				clearInterval(timer);
+			}
+		},30);	
+	}
+};
+</script>
+</head>
+
+<body>
+<div id="basket">
+	<div class="basket-t"></div>
+	<div class="basket-b"></div>
+</div>
+<div id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>仿苹果菜单</title>
+<style type="text/css">
+	#box{position: absolute; left: 0; bottom: 0; width: 100%; text-align: center;}
+</style>
+<script type="text/javascript">
+	window.onload=function(){
+		var oBox=document.getElementById('box');
+		var aImg=oBox.children;
+		document.onmousemove=function(ev){
+			var oEvent=ev||event;
+			for(var i=0;i<aImg.length;i++){
+				var a=aImg[i].offsetLeft+aImg[i].offsetWidth/2-oEvent.clientX;
+				var b=aImg[i].offsetTop+oBox.offsetTop+aImg[i].offsetHeight/2-oEvent.clientY;
+				var c=Math.sqrt(a*a+b*b);
+
+				var scale=1-c/500;
+				scale<0.5&&(scale=0.5);
+				aImg[i].width=scale*128;
+			}
+		};
+	};
+</script>
+</head>
+<body>
+	<p style="font-size:24px; width:600px; text-align: center; position:absolute; left:50%; margin-left:-300px; top: 20px; color: #000; z-index: 999;">仿苹果菜单效果</p>
+    <div id="box">
+		<img src="img/apple_1.png" width="64">
+	    <img src="img/apple_2.png" width="64">
+	    <img src="img/apple_3.png" width="64">
+	    <img src="img/apple_4.png" width="64">
+	    <img src="img/apple_5.png" width="64">
+	</div>
+</body>
+</html>

@@ -1,0 +1,750 @@
+@charset "UTF-8";
+
+.nav{ -height: 47px; width: 100%; border-bottom: 1px solid #323132; box-shadow: 0 2px 3px 0 rgba(0,0,0,0.5); position: fixed; z-index: 9999; background: rgba(0,0,0,0.6); }
+.nav-wrap{width: 80%; position: relative; margin:0 auto; -height: 48px;}
+.nav-list{ -height: 60px;}
+.nav-list li{float: left; line-height: 47px; height: 47px; text-align: center;}
+.nav-list li a{ height: 17px; padding: 20px; font-size:1.35em; color: #fff; }
+.nav-list li.active{ background: #363c41; transition:0.5s all ease;}
+.nav-list li.active a{color: #fff; font-weight: 700;}
+
+
+.part-two,.part-three,.part-four,.part-five,.copyright{background-image:url(../images/icon/bg.png); }
+.part-one-wrap .prev
+,.part-one-wrap .next
+,.part-one-wrap .prev:hover
+,.part-one-wrap .next:hover
+,.part-three-wrap .footer .btn-change
+,.part-three-wrap .footer .btn-more
+,.part-three-wrap .footer .btn-change:hover
+,.part-three-wrap .footer .btn-more:hover
+,.copyright .pics .weibo
+,.copyright .pics .weixin
+,.copyright .pics .weixin-img
+{ background-image:url(../images/bg-all.png);}
+
+.part-one{background: #ccc;}
+.part-two{background-color:#fff; }
+.part-three{background-color:#FAFAFA;}
+.part-four{background-color:#f4f4f4;}
+.part-five{background-color: #e8e8e8;}
+.copyright{background-color:rgba(0,0,0,0.9);}
+
+.slide{width: 100%; height: 100%; position: absolute; box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.05) inset, 0 2px 3px 0 rgba(0, 0, 0, 0.1) inset;}
+.part-one-wrap{overflow: hidden; height: 100%;}
+.part-one-wrap .focus{position: relative; height: 100%;overflow: hidden;}
+.part-one-wrap .focus ul li{ width: 100%; position: absolute; overflow: hidden; height: 100%; opacity:0; filter:alpha(opacity:0); }
+.part-one-wrap .focus ul{-max-width: 1920px; width: 100%;position: relative; height: 100%; }
+.part-one-wrap .focus .btns1{ position: absolute; z-index: 999; width: 116px; left: 50%; margin-left: -58px; bottom: 30px; }
+.part-one-wrap .focus .btns1 li{  width: 12px; height: 12px; border-radius: 50%; cursor: pointer; margin-left: 20px; float: left; position: relative; }
+.part-one-wrap .focus .btns1 li a{width: 4px;height: 4px;border-radius: 50%;background: #000;display: inline-block; margin: 4px; position: absolute;}
+.part-one-wrap .focus .btns1 li.selected{ background: transparent; border: 1px solid #dfdfdf; width: 10px; height: 10px;}
+.part-one-wrap .focus .btns1 li.selected a{background: none;}
+.part-one-wrap .prev{ background-color: rgba(0,0,0,0.5); background-position:0px -120px; height: 60px; width: 60px; position: absolute; top:50%; margin-top: -30px; left: -10px; cursor:pointer;}
+.part-one-wrap .next{ background-color: rgba(0,0,0,0.5); background-position:0px -240px; height: 60px; width: 60px; position: absolute;top:50%; margin-top: -30px; right: -10px; cursor:pointer;}
+.part-one-wrap .prev:hover{ background-color: rgba(0,0,0,0.5); background-position:0px -180px; }
+.part-one-wrap .next:hover{ background-color: rgba(0,0,0,0.5); background-position:0px -300px; }
+
+.part-two-wrap{height: 100%;}
+.part-two-wrap .header,.part-three-wrap .header,.part-five-wrap .header{ -margin: 60px 0 45px 0; padding: 60px; text-align: center; }
+.part-two-wrap .header h2,.part-three-wrap .header h2,.part-five-wrap .header h2,.copyright .contact h2{ font-size:2.7em; padding: 20px 0;}
+.part-two-wrap .header span,.part-three-wrap .header span,.part-five-wrap .header span,.copyright .contact span{ font-size: 1.25em; line-height: 25px;}
+.part-two-wrap .grids{ overflow: hidden; -width: 1000px; width: 75%; margin: 0 auto;}
+.part-two-wrap .grids-item{ display: inline; width: 30%; margin-left:5%; background: #fff; box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.15) inset, 0px 2px 3px 0px rgba(0, 0, 0, 0.1) inset; float: left; text-align: center; cursor: pointer; position: relative;}
+.part-two-wrap .first{margin-left: 0;}
+.part-two-wrap .grids-item .grids-item-wrap img{width: 100%; height:145px; }
+.part-two-wrap .grids-item .grids-item-wrap .disc{padding:20px 5%; width: 90%; height: 90px; position: absolute; color: #fff; background: rgba(0,0,0,0.5); border-top: 1px solid #eee; bottom: -130px; line-height: 24px; text-align: left;}
+.part-two-wrap .grids-item .grids-item-wrap .disc h3{font-size: 1.4em;margin-bottom: 5px;}
+.part-two-wrap .footer{margin-top: 40px; margin-top:50px; text-align: center;}
+.part-two-wrap .footer p{font-size: 1.25em; margin-bottom: 15px;}
+.part-two-wrap .footer a{font-size: 1.5em;line-height: 22px; font-weight: 700;}
+
+.part-three-wrap{position: relative; width: 100%; height: 100%;}
+.part-three-wrap .grids{ -width: 968px; width: 70%; height: 315px; margin: 0 auto;}
+.part-three-wrap .grids-item{ position: relative; display: inline; width: 22%; -height: 150px; overflow: hidden; float: left; margin-left: 4%; margin-bottom: 15px; cursor:pointer;}
+.part-three-wrap .first{margin-left: 0;}
+.part-three-wrap .grids-item img{width: 100%; vertical-align: bottom;}
+.part-three-wrap .grids-item .disc{width: 100%; height: 100%; position: absolute; left: -213px; top: 0; background: rgba(0,0,0,0.5); }
+.part-three-wrap .grids-item .disc a{color: #fff; width: 100%; height: 100%; display: block; position: absolute;}
+.part-three-wrap .grids-item .disc h3{margin: 20px 0 15px 15px;}
+.part-three-wrap .grids-item .disc p{margin-left: 15px; width: 195px;}
+.part-three-wrap .grids-item-wrap{overflow: hidden; border: 1px solid rgba(0,0,0,0.2);}
+.part-three-wrap .grids-item-wrap a{float: left;}
+.part-three-wrap .footer .btn{ position: absolute; bottom: 50px; left: 50%; width: 70px;height: 30px; line-height: 30px; display:inline-block;}
+.part-three-wrap .footer .btn-change{background-position:0px 0px; margin-left: -100px; padding-left:30px; }
+.part-three-wrap .footer .btn-more{background-position:0px -60px; margin-left: 20px; padding-left:30px; }
+.part-three-wrap .footer a{font-size: 1.25em; color: #666; position: absolute; bottom: 30px; margin-left: -22px;}
+.part-three-wrap .footer .btn-change:hover{background-position:0px -30px; color: #11cd6e;}
+.part-three-wrap .footer .btn-more:hover{background-position:0px -90px; color: #11cd6e;}
+
+.part-four-wrap{position: relative; height: 100%;}
+.part-four-wrap .header{width: 42%; height: 300px; top:20%; padding-right: 8%; position: absolute; right: 0;}
+.part-four-wrap .header h2{ font-size:2.7em; padding: 25px 0;}
+.part-four-wrap .header .txt1{ font-size: 1.25em;  line-height: 25px; border-bottom: 1px solid #888;}
+.part-four-wrap .header .txt1 p{margin-bottom: 20px;}
+.part-four-wrap .header .txt2{font-size: 1em; line-height: 22px;  margin-top: 20px;}
+.part-four-wrap .grids{width: 36%; padding: 0 7%; top:23%; position: absolute;}
+.part-four-wrap .grids-item{width: 41%; height: 30%; margin: 4%; float: left; cursor:pointer; position:relative; background: #fff; }
+.part-four-wrap .grids-item .grids-item-wrap{border: 2px solid rgba(0,0,0,0.5); border-radius:5px; overflow: hidden;}
+.part-four-wrap .grids-item img{width: 100%; height: auto; vertical-align: bottom;}
+.part-four-wrap .grids-item .disc{ opacity: 0; filter:alpha(opacity:0); width: 99%; min-height: 100px; border: 1px solid;  position: absolute; background: rgba(0,0,0,0.5); color: #fff; overflow: hidden; }
+.part-four-wrap .grids-item .disc-t{ left: 0; bottom: 100%;border-bottom: none; border-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0); border-radius: 5px 5px 0 0; }
+.part-four-wrap .grids-item .disc-b{ left: 0; top: 100%; border-top: none; border-color:rgba(255, 255, 255, 0) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0); border-radius: 0 0 5px 5px;}
+.part-four-wrap .grids .t .selected{border-radius:0 0 5px 5px; transition:1s all ease; }
+.part-four-wrap .grids .b .selected{border-radius:5px 5px 0 0; transition:1s all ease; }
+.part-four-wrap .grids-item .disc h3{margin: 15px 15px; font-size: 1.5em;}
+.part-four-wrap .grids-item .disc p{margin: 10px 17px;}
+.part-four-wrap .footer{ position: absolute; bottom: 20px; text-align: center; margin-left: -22px; left: 50%;}
+
+.part-five-wrap .grids{width: 48%; margin: 0 auto;}
+.part-five-wrap .grids .form-main{width: 100%; position: relative;}
+.form-main .row{overflow: hidden; width: 100%; margin-bottom: 3px; text-align: center; }
+.form-main .row-sm{ display:inline; width: 46%; margin:1%;  padding: 1%; float: left; border-radius: 3px;background: #fff; height: 100%;}
+.form-main .username{width: 100%; height: 35px; font-size: 1.25em;}
+.form-main .subject{margin: 1%; padding: 1%; width: 96%; height: 35px;font-size: 1.25em; background: #fff; border-radius: 3px;}
+.form-main .content{margin: 1%; padding: 1%; width: 96%; height: 200px;font-size: 1.25em; background: #fff; border-radius: 3px; }
+.form-main .button{margin: 1%;padding: 1%; width: 31%; height: 45px; line-height: 33px; float: right; text-align: center; background: #fff; border-radius: 3px; font-size: 1.5em; cursor:pointer;}
+
+.copyright { text-align: center; color: #fff;}
+.copyright .contact{-margin: 100px 0px 45px; text-align: center;}
+.copyright .contact p{font-size: 1.25em; line-height: 25px;}
+.copyright .pics{height: 55px; margin-top: 40px;}
+.copyright .pics .pics-item{ height: 55px; width: 55px; border-radius: 50%; display: inline-block; _zoom:1;*display:inline; cursor:pointer; position: relative;}
+.copyright .pics .pics-item .shadow{width: 100%; height: 100%; border-radius: 50%; left: 0; top: 0; background: rgba(0,0,0,0.5); display: block;}
+.copyright .pics .weibo{background-position: 0px -360px;  }
+.copyright .pics .weixin{background-position: 0px -415px; position: relative;margin-right: 60px;}
+.copyright .pics .weixin-img{ background:url(../images/weixin.png);
+z-index: 10; width: 220px; height: 220px; border: 1px solid #000; border-radius: 3px; position: absolute; top: -40px; right: -150px; display: none;}
+.copyright .design{ color: #166e67;}
+.copyright .bottom{ font-size: 1.2em; margin-top:50px;}
+.copyright .bottom p{margin-bottom: 10px;}
+
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+  /* Styles */
+}  
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+	/* Styles */
+} 
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) 
+{  
+  /* Styles */
+  	.nav-list li {
+				float: left;
+				line-height: 35px;
+				height: 35px;
+				text-align: center;
+			}
+ 	.nav-list li a {
+				height: 17px;
+				padding: 10px;
+				font-size: 1.2em;
+				color: #fff;
+			}
+	.part-two-wrap .header, .part-three-wrap .header, .part-five-wrap .header {
+				padding: 70px 30px;
+				text-align: center;
+			}
+
+	.part-two-wrap .header h2, .part-three-wrap .header h2, .part-five-wrap .header h2, .copyright .contact h2 {
+				font-size: 1.8em;
+				padding: 30px 0;
+			}
+	.part-two-wrap .header span, .part-three-wrap .header span, .part-five-wrap .header span, .copyright .contact span {
+				font-size: 1.2em;
+				line-height: 23px;
+			}
+	.part-two-wrap .grids {
+				overflow: hidden;
+				width: 85%;
+				margin: 0 auto;
+			}
+	.part-two-wrap .footer p {
+				font-size: 1em;
+				margin-bottom: 15px;
+				padding: 30px;
+				line-height: 25px;
+			}
+	.part-three-wrap .grids {
+				width: 90%;
+				height: 315px;
+				margin: 0 auto;
+			}
+	.part-three-wrap .footer a {
+				font-size: 1em;
+			}
+	.part-three-wrap .footer .btn {
+				position: absolute;
+				bottom: 100px;
+				left: 50%;
+				width: 70px;
+				height: 30px;
+				line-height: 30px;
+				display: inline-block;
+			}
+	.part-four-wrap .header {
+				width: 100%;
+				height: 38%;
+				top: 12%;
+				position: absolute;
+				right: 0;
+				text-align: center;
+				padding: 0;
+			}
+	.part-four-wrap .header h2 {
+				font-size: 1.7em;
+				padding: 25px 0;
+			}
+	.part-four-wrap .header .txt1 {
+				font-size: 1em;
+				line-height: 20px;
+				border-bottom: 1px solid #888;
+				padding: 0 20px;
+				text-align: left;
+			}
+	.part-four-wrap .header .txt1 p {
+				margin-bottom: 10px;
+			}
+	.part-four-wrap .header .txt2 {
+				font-size: 1em;
+				line-height: 22px;
+				margin-top: 5px;
+				padding: 0 20px;
+				text-align: left;
+			}
+	.part-four-wrap .grids {
+				float: none;
+				padding: 0 7%;
+				top: 60%;
+				position: absolute;
+				width: 85%;
+			}
+
+	.part-four-wrap .grids-item .disc h3 {
+				margin: 10px;
+				font-size: 1.2em;
+			}
+	.part-four-wrap .grids-item .disc p {
+				margin: 5px 12px;
+			}
+
+	.copyright .contact {
+				text-align: center;
+				padding: 0 20px;
+			}
+
+}  
+@media only screen and (min-device-width : 481px) and (max-device-width : 767px) 
+{
+  /* Styles */
+		
+	.part-two-wrap .header, .part-three-wrap .header, .part-five-wrap .header {
+				padding: 120px 30px;
+				text-align: center;
+			}
+
+	.part-two-wrap .header h2, .part-three-wrap .header h2, .part-five-wrap .header h2, .copyright .contact h2 {
+				font-size: 3.5em;
+				line-height: 50px;
+				padding: 50px 0;
+			}
+	.part-two-wrap .header span, .part-three-wrap .header span, .part-five-wrap .header span, .copyright .contact span {
+				font-size: 2em;
+				line-height: 35px;
+			}
+	.part-two-wrap .grids {
+				overflow: hidden;
+				width: 85%;
+				margin: 0 auto;
+			}
+	.part-two-wrap .footer{
+				margin-top: 100px;
+				text-align: center;
+			}
+	.part-two-wrap .footer p {
+				font-size: 1.8em;
+				margin-bottom: 15px;
+				padding: 40px;
+				line-height: 35px;
+			}
+	.part-three-wrap .grids {
+				width: 90%;
+				height: 315px;
+				margin: 0 auto;
+			}
+	.part-three-wrap .footer a {
+				font-size: 2em;
+			}
+	.part-three-wrap .footer .btn {
+				position: absolute;
+				bottom: 200px;
+				left: 50%;
+				width: 80px;
+				height: 30px;
+				line-height: 30px;
+				display: inline-block;
+			}
+	.part-four-wrap .header {
+				width: 100%;
+				height: 38%;
+				top: 12%;
+				position: absolute;
+				right: 0;
+				text-align: center;
+				padding: 0;
+			}
+	.part-four-wrap .header h2 {
+				font-size: 3.5em;
+				line-height: 50px;
+				padding: 25px 0;
+			}
+	.part-four-wrap .header .txt1 {
+				font-size: 1.5em;
+				line-height: 30px;
+				border-bottom: 1px solid #888;
+				margin: 0 50px;
+				text-align: left;
+			}
+	.part-four-wrap .header .txt1 p {
+				margin-bottom: 10px;
+			}
+	.part-four-wrap .header .txt2 {
+				font-size: 1.5em;
+				line-height: 22px;
+				margin-top: 20px;
+				padding: 0 50px;
+				text-align: left;
+			}
+	.part-four-wrap .grids {
+				float: none;
+				padding: 0 7%;
+				top: 55%;
+				position: absolute;
+				width: 85%;
+			}
+
+	.part-four-wrap .grids-item .disc h3 {
+				margin: 10px;
+				font-size: 1.2em;
+			}
+	.part-four-wrap .grids-item .disc p {
+				margin: 5px 12px;
+			}
+
+	.copyright .contact {
+				text-align: center;
+				padding: 0 20px;
+			}
+	.copyright .contact p{
+				line-height: 35px;
+			}
+} 
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) 
+{
+  /* Styles */
+		
+	.part-two-wrap .header, .part-three-wrap .header, .part-five-wrap .header {
+				padding: 120px 30px;
+				text-align: center;
+			}
+
+	.part-two-wrap .header h2, .part-three-wrap .header h2, .part-five-wrap .header h2, .copyright .contact h2 {
+				font-size: 3.5em;
+				line-height: 50px;
+				padding: 50px 0;
+			}
+	.part-two-wrap .header span, .part-three-wrap .header span, .part-five-wrap .header span, .copyright .contact span {
+				font-size: 2em;
+				line-height: 35px;
+			}
+	.part-two-wrap .grids {
+				overflow: hidden;
+				width: 85%;
+				margin: 0 auto;
+			}
+	.part-two-wrap .footer{
+				margin-top: 100px;
+				text-align: center;
+			}
+	.part-two-wrap .footer p {
+				font-size: 1.8em;
+				margin-bottom: 15px;
+				padding: 40px;
+				line-height: 35px;
+			}
+	.part-three-wrap .grids {
+				width: 90%;
+				height: 315px;
+				margin: 0 auto;
+			}
+	.part-three-wrap .footer a {
+				font-size: 2em;
+			}
+	.part-three-wrap .footer .btn {
+				position: absolute;
+				bottom: 200px;
+				left: 50%;
+				width: 80px;
+				height: 30px;
+				line-height: 30px;
+				display: inline-block;
+			}
+	.part-four-wrap .header {
+				width: 100%;
+				height: 38%;
+				top: 12%;
+				position: absolute;
+				right: 0;
+				text-align: center;
+				padding: 0;
+			}
+	.part-four-wrap .header h2 {
+				font-size: 3.5em;
+				line-height: 50px;
+				padding: 25px 0;
+			}
+	.part-four-wrap .header .txt1 {
+				font-size: 1.5em;
+				line-height: 30px;
+				height: 200px;
+				border-bottom: 1px solid #888;
+				padding: 0 20px;
+				text-align: left;
+			}
+	.part-four-wrap .header .txt1 p {
+				margin-bottom: 10px;
+			}
+	.part-four-wrap .header .txt2 {
+				font-size: 1.5em;
+				line-height: 22px;
+				margin-top: 20px;
+				padding: 0 20px;
+				text-align: left;
+			}
+	.part-four-wrap .grids {
+				float: none;
+				padding: 0 7%;
+				top: 50%;
+				position: absolute;
+				width: 85%;
+			}
+
+	.part-four-wrap .grids-item .disc h3 {
+				margin: 10px;
+				font-size: 1.2em;
+			}
+	.part-four-wrap .grids-item .disc p {
+				margin: 5px 12px;
+			}
+
+	.copyright .contact {
+				text-align: center;
+				padding: 0 20px;
+			}
+	.copyright .contact p{
+				line-height: 35px;
+			}
+} 
+/* iPads (landscape) ----------- */
+@media screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape)
+{
+  /* Styles */
+		
+	.part-two-wrap .header, .part-three-wrap .header, .part-five-wrap .header {
+				padding: 80px 30px;
+				text-align: center;
+			}
+
+	.part-two-wrap .header h2, .part-three-wrap .header h2, .part-five-wrap .header h2, .copyright .contact h2 {
+				font-size: 3.5em;
+				line-height: 50px;
+				padding: 30px 0;
+			}
+	.part-two-wrap .header span, .part-three-wrap .header span, .part-five-wrap .header span, .copyright .contact span {
+				font-size: 2em;
+				line-height: 35px;
+			}
+	.part-two-wrap .grids {
+				overflow: hidden;
+				width: 85%;
+				margin: 0 auto;
+			}
+	.part-two-wrap .footer{
+				margin-top: 60px;
+				text-align: center;
+			}
+	.part-two-wrap .footer p {
+				font-size: 1.8em;
+				margin-bottom: 15px;
+				padding: 40px;
+				line-height: 35px;
+			}
+	.part-three-wrap .grids {
+				width: 90%;
+				height: 315px;
+				margin: 0 auto;
+			}
+	.part-three-wrap .footer a {
+				font-size: 2em;
+			}
+	.part-three-wrap .footer .btn {
+				position: absolute;
+				bottom: 50px;
+				left: 50%;
+				width: 80px;
+				height: 30px;
+				line-height: 30px;
+				display: inline-block;
+			}
+	.part-four-wrap .header {
+				width: 100%;
+				height: 38%;
+				top: 12%;
+				position: absolute;
+				right: 0;
+				text-align: center;
+				padding: 0;
+			}
+	.part-four-wrap .header h2 {
+				font-size: 3.5em;
+				line-height: 50px;
+				padding: 25px 0;
+			}
+	.part-four-wrap .header .txt1 {
+				font-size: 1.5em;
+				line-height: 30px;
+				height: 160px;
+				border-bottom: 1px solid #888;
+				padding: 0 50px;
+				text-align: left;
+			}
+	.part-four-wrap .header .txt1 p {
+				margin-bottom: 10px;
+			}
+	.part-four-wrap .header .txt2 {
+				font-size: 1.5em;
+				line-height: 22px;
+				margin-top: 50px;
+				padding: 0 50px;
+				text-align: left;
+			}
+	.part-four-wrap .grids {
+				float: none;
+				padding: 0 7%;
+				top: 55%;
+				position: absolute;
+				width: 85%;
+			}
+	.part-four-wrap .grids-item {
+				width: 21%;
+				height: 30%;
+				margin: 6% 2%;
+				float: left;
+				cursor: pointer;
+				position: relative;
+				background: #fff;
+			}
+	.part-four-wrap .grids-item .disc h3 {
+				margin: 10px;
+				font-size: 1.2em;
+			}
+	.part-four-wrap .grids-item .disc p {
+				margin: 5px 12px;
+			}
+
+	.copyright .contact {
+				text-align: center;
+				padding: 0 20px;
+			}
+	.copyright .contact p{
+				line-height: 35px;
+			}
+} 
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait)
+{
+  /* Styles */
+		
+	.part-two-wrap .header, .part-three-wrap .header, .part-five-wrap .header {
+				padding: 80px 30px;
+				text-align: center;
+			}
+
+	.part-two-wrap .header h2, .part-three-wrap .header h2, .part-five-wrap .header h2, .copyright .contact h2 {
+				font-size: 3.5em;
+				line-height: 50px;
+				padding: 30px 0;
+			}
+	.part-two-wrap .header span, .part-three-wrap .header span, .part-five-wrap .header span, .copyright .contact span {
+				font-size: 2em;
+				line-height: 35px;
+			}
+	.part-two-wrap .grids {
+				overflow: hidden;
+				width: 85%;
+				margin: 0 auto;
+			}
+	.part-two-wrap .footer{
+				margin-top: 60px;
+				text-align: center;
+			}
+	.part-two-wrap .footer p {
+				font-size: 1.8em;
+				margin-bottom: 15px;
+				padding: 40px;
+				line-height: 35px;
+			}
+	.part-three-wrap .grids {
+				width: 90%;
+				height: 315px;
+				margin: 0 auto;
+			}
+	.part-three-wrap .footer a {
+				font-size: 2em;
+			}
+	.part-three-wrap .footer .btn {
+				position: absolute;
+				bottom: 50px;
+				left: 50%;
+				width: 80px;
+				height: 30px;
+				line-height: 30px;
+				display: inline-block;
+			}
+	.part-four-wrap .header {
+				width: 100%;
+				height: 38%;
+				top: 12%;
+				position: absolute;
+				right: 0;
+				text-align: center;
+				padding: 0;
+			}
+	.part-four-wrap .header h2 {
+				font-size: 3.5em;
+				line-height: 50px;
+				padding: 25px 0;
+			}
+	.part-four-wrap .header .txt1 {
+				font-size: 1.5em;
+				line-height: 30px;
+				height: 160px;
+				border-bottom: 1px solid #888;
+				margin: 0 50px;
+				text-align: left;
+			}
+	.part-four-wrap .header .txt1 p {
+				margin-bottom: 10px;
+			}
+	.part-four-wrap .header .txt2 {
+				font-size: 1.5em;
+				line-height: 22px;
+				margin-top: 50px;
+				padding: 0 50px;
+				text-align: left;
+			}
+	.part-four-wrap .grids {
+				float: none;
+				padding: 0 7%;
+				top: 55%;
+				position: absolute;
+				width: 85%;
+			}
+	.part-four-wrap .grids-item {
+				width: 21%;
+				height: 30%;
+				margin: 6% 2%;
+				float: left;
+				cursor: pointer;
+				position: relative;
+				background: #fff;
+			}
+	.part-four-wrap .grids-item .disc h3 {
+				margin: 10px;
+				font-size: 1.2em;
+			}
+	.part-four-wrap .grids-item .disc p {
+				margin: 5px 12px;
+			}
+
+	.copyright .contact {
+				text-align: center;
+				padding: 0 20px;
+			}
+	.copyright .contact p{
+				line-height: 35px;
+			}
+} 
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+  /* Styles */
+}
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
+  /* Styles */
+} 
+/* iPhone 4 ----------- */
+@media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min-device-pixel-ratio:1.5) 
+{  
+  /* Styles */
+	.part-two-wrap .header, .part-three-wrap .header, .part-five-wrap .header {
+				padding: 70px 30px 40px;
+				text-align: center;
+			}
+	.part-three-wrap .grids {
+				width: 90%;
+				height: 315px;
+				margin: 0 auto;
+			}
+	.part-three-wrap .footer a {
+				font-size: 1em;
+			}
+	.part-three-wrap .footer .btn {
+				position: absolute;
+				bottom: 140px;
+			}
+	.part-four-wrap .header {
+				width: 100%;
+				height: 38%;
+				top: 12%;
+				position: absolute;
+				right: 0;
+				text-align: center;
+				padding: 0;
+			}
+	.part-four-wrap .header h2 {
+				font-size: 1.7em;
+				padding: 20px 0;
+			}
+	.part-four-wrap .header .txt1 {
+				font-size: 1em;
+				line-height: 15px;
+				border-bottom: 1px solid #888;
+				margin: 0 20px;
+				padding: 0;
+				text-align: left;
+			}
+	.part-four-wrap .header .txt1 p {
+				margin-bottom: 7px;
+			}
+	.part-four-wrap .header .txt2 {
+				font-size: 1em;
+				line-height: 15px;
+				margin-top: 5px;
+				padding: 0 20px;
+				text-align: left;
+			}
+	.copyright .contact {
+				text-align: center;
+				padding: 60px 20px 0;
+			}
+	.copyright .bottom {
+				font-size: 1em;
+				margin-top: 20px;
+			}
+}  

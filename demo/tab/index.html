@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="copyright" content="" />
+<meta name="description" content="" />
+<title>无缝滚动选项卡轮播效果</title>
+<style>
+*{padding: 0; margin:0;}
+.scroll-ty{ position: relative; text-align: center; overflow: hidden;width: 600px; height: 330px; margin:120px auto;}
+.scroll-wrap{overflow: hidden;  }
+.scroll-wrap ul{position: relative; left: 0; top: 0;}
+.scroll-wrap li{ float: left;width:600px; height:330px; list-style: none;}
+.scroll-wrap ul li img{width:600px; height:330px; vertical-align: bottom;}
+.scroll-btn ul{position: absolute; width: 70px; bottom:10px; left: 50%; margin-left: -30px;z-index: 9999; }
+.scroll-btn ul li{ border-radius: 50%; width:10px; height: 10px; display: inline-block; background:#b7b7b7; float: left; margin:2px;list-style: none; }
+
+.scroll-btn ul li.selected{ background:#f40; }
+.scroll-ty .scroll-btn .prev,.scroll-ty .scroll-btn .next{ z-index: 9999; position: absolute; height:40px; width: 40px; line-height: 40px;color: #fff; background-color: rgba(0,0,0,0.3); top:50%; margin-top: -20px; display: block;}
+.scroll-ty .scroll-btn .next{right: 0px; background-image:url(images/next.png);}
+.scroll-ty .scroll-btn .prev{left: 0px; background-image: url(images/prev.png);}
+.scroll-ty .scroll-btn .prev:hover,.scroll-btn .next:hover{ background-color: rgba(0,0,0,0.6);}
+#disc{font-size:24px; width:600px; text-align: center; position:absolute; left:50%; margin-left:-300px; top: 20px;}
+</style>
+<script>
+window.onload=function(){
+	var oBox=document.getElementById('box');
+	var oNext=oBox.children[1].children[0].children[1];
+	var oPrev=oBox.children[1].children[0].children[0];
+	var oUl=oBox.getElementsByTagName('ul')[0];
+	var aBtn=oBox.children[1].children[1].children;
+
+	oUl.innerHTML+=oUl.innerHTML;
+	oUl.style.width=oUl.children[0].offsetWidth*oUl.children.length+'px';
+	var iNow=0;
+	var W=oUl.offsetWidth/2;
+	var timer=null;
+
+	for(var i=0;i<aBtn.length;i++){
+		(function(index){
+			aBtn[i].onclick=function(){
+				if((iNow%aBtn.length==aBtn.length-1)||iNow%aBtn.length==-1 && index==0){
+					iNow++;
+				}
+				if(iNow%aBtn.length==0 && index==aBtn.length-1){
+					iNow--;
+				}
+
+				iNow=Math.floor(iNow/aBtn.length)*aBtn.length+index;
+				tab();
+			};
+		})(i);
+	} 
+	function tab(){
+		for(var i=0;i<aBtn.length;i++){
+			aBtn[i].className='';
+		}
+		if(iNow>0){
+			aBtn[iNow%aBtn.length].className='selected';
+		}else{
+			aBtn[(iNow%aBtn.length+aBtn.length)%aBtn.length].className='selected';
+		}
+		startMove(oUl,-iNow*oUl.children[0].offsetWidth);
+	}
+	oNext.onclick=next;
+
+	function next(){
+		iNow++;
+		tab();
+	};
+	oPrev.onclick=function(){
+		iNow--;
+		tab();
+	};
+	var left=0;
+	function startMove(obj,iTarget){
+		clearInterval(obj.timer);
+		var count=Math.floor(300/30);
+		var start=left;
+		var dis=iTarget-start;
+		var n=0;
+		obj.timer=setInterval(function(){
+			n++;
+			var a=n/count;
+			left=start+dis*a*a*a*a;
+			if(left<0){
+				obj.style.left=left%W+'px';
+			}else{
+				obj.style.left=(left%W-W)%W+'px';
+			}
+			if(n==count){
+				clearInterval(obj.timer);
+			}
+		},30);
+	}
+	timer=setInterval(next,2000);
+	oBox.onmouseover=function(){
+		clearInterval(timer);
+	};
+	oBox.onmouseout=function(){
+		timer=setInterval(next,2000);
+	};
+};
+</script>
+</head>
+
+<body>
+<p id="disc">无缝滚动选项卡轮播效果</p>
+<div class="scroll-ty" id="box">
+	<div class="scroll-wrap">
+		<ul>
+			<li><a href="javascript:;"><img src="images/1.jpg" /></a></li>
+			<li><a href="javascript:;"><img src="images/2.jpg" /></a></li>
+			<li><a href="javascript:;"><img src="images/3.jpg" /></a></li>
+			<li><a href="javascript:;"><img src="images/4.jpg" /></a></li>
+            <li><a href="javascript:;"><img src="images/5.jpg" /></a></li>
+		</ul>
+	</div>
+	<div class="scroll-btn">
+		<div>
+			<a class="prev" href="javascript:;"></a>
+			<a class="next" href="javascript:;"></a>
+		</div>
+		<ul>
+			<li class="selected"><a href="javascript:;"></a></li>
+			<li><a href="javascript:;"></a></li>
+			<li><a href="javascript:;"></a></li>
+			<li><a href="javascript:;"></a></li>
+            <li><a href="javascript:;"></a></li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

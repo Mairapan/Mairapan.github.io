@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>照片墙</title>
+<style>
+*{ margin:0; padding:0; list-style:none; font-family: "微软雅黑","张海山锐线体简"}
+#ul1{width:1000px;margin:50px auto; position:relative;}
+#ul1 li{ float:left; margin:20px; background:#fff; /*position:absolute;left:0;top:0;*/}
+#ul1 li img{ border-radius:50%; border:5px solid #000; }
+</style>
+<script src="move.js"></script>
+<script>
+window.onload=function(){
+	var aLi=document.getElementById('ul1').children;
+	var zIndex=2;
+	
+	//布局转换
+	var aPos=[];
+	for(var i=0;i<aLi.length;i++){
+		aPos.push({left:aLi[i].offsetLeft,top:aLi[i].offsetTop});	
+		aLi[i].style.left=aPos[i].left+'px';
+		aLi[i].style.top=aPos[i].top+'px';
+	}
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].style.position='absolute';	
+		aLi[i].style.margin=0;
+		aLi[i].index=i;
+	}
+	
+	//添加拖拽
+	for(var i=0;i<aLi.length;i++){
+		drag(aLi[i]);
+	}	
+	
+	//拖拽封装
+	function drag(obj){
+		obj.onmousedown=function(ev){
+			obj.style.zIndex=zIndex++;
+			clearInterval(obj.timer);//防止运动过程中按下
+			
+			var oEvt=ev||event;
+			var disX=oEvt.clientX-obj.offsetLeft;
+			var disY=oEvt.clientY-obj.offsetTop;
+			document.onmousemove=function(ev){
+				var oEvt=ev||event;
+				obj.style.left=oEvt.clientX-disX+'px';
+				obj.style.top=oEvt.clientY-disY+'px';	
+				
+				//交换位置
+				var nearObj=findNearest(obj);//碰撞检测+找最近
+				if(nearObj && nearObj!=obj){
+					
+					var n=obj.index;//拿着的obj索引
+					var m=nearObj.index;//被撞的索引
+					
+					for(var i=0;i<aLi.length;i++){
+						//←	li.index>n && li.index<=m	n到m不含n
+						if(aLi[i].index>n && aLi[i].index<=m){
+							aLi[i].index--;
+							move(aLi[i],aPos[aLi[i].index]);	
+						}else if(aLi[i].index<n && aLi[i].index>=m){
+							//→ li.index<n && li.index>=m n到m不含n
+							aLi[i].index++;
+							move(aLi[i],aPos[aLi[i].index]);
+						}
+						
+					}
+					obj.index=m;//obj的索引等于被撞到的 near(m)
+				}
+				
+			};
+			document.onmouseup=function(){
+				document.onmousemove=document.onmouseup=null;
+				
+				move(obj,aPos[obj.index]);//回自个位置
+				
+				obj.releaseCapture&&obj.releaseCapture();
+			};
+			obj.setCapture&&obj.setCapture();
+			return false;	
+		};	
+	}
+	
+	function findNearest(obj){
+		var minDis=9999999999;//距离
+		var minDisIndex=-1;//下标
+		for(var i=0;i<aLi.length;i++){
+			if(collTest(obj,aLi[i])){//撞到了
+				//找最近
+				var dis=getDis(obj,aLi[i]);//求obj到被撞的房子距离
+				if(dis<minDis){
+					minDis=dis;
+					minDisIndex=i;	
+				}
+			}
+		}
+		if(minDisIndex==-1){//没撞到
+			return null;
+		}else{
+			return aLi[minDisIndex]	//丢出去最近的li	
+		}
+	}
+	
+	function getDis(obj1,obj2){//obj1到obj2的房子的距离
+		var a=aPos[obj2.index].top-obj1.offsetTop;
+		var b=aPos[obj2.index].left-obj1.offsetLeft;
+		return Math.sqrt(a*a+b*b);
+	}
+	
+	function collTest(obj1,obj2){
+		var l1=obj1.offsetLeft;
+		var t1=obj1.offsetTop;
+		var r1=obj1.offsetLeft+obj1.offsetWidth;
+		var b1=obj1.offsetTop+obj1.offsetHeight;
+		
+		var l2=aPos[obj2.index].left
+		var t2=aPos[obj2.index].top;
+		var r2=aPos[obj2.index].left+obj2.offsetWidth;
+		var b2=aPos[obj2.index].top+obj2.offsetHeight;
+		
+		if(l1>r2 || t1>b2 || r1<l2 || b1<t2){
+			//没撞到	
+			return false;
+		}else{
+			//撞到
+			return true;
+		}
+	}
+};
+</script>
+</head>
+
+<body>
+
+<ul id="ul1">
+	<li><img src="images/mao (1).jpg"></li>
+	<li><img src="images/mao (2).jpg"></li>
+	<li><img src="images/mao (3).jpg"></li>
+	<li><img src="images/mao (4).jpg"></li>
+	<li><img src="images/mao (5).jpg"></li>
+	<li><img src="images/mao (6).jpg"></li>
+	<li><img src="images/mao (7).jpg"></li>
+	<li><img src="images/mao (8).jpg"></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>手风琴效果</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style type="text/css">
+	*{padding: 0;margin: 0;}
+	#box{width: 1000px; height:337px; position: relative; margin: 100px auto; overflow: hidden;}
+	.item{ width: 500px; height:337px;position: absolute;left: 0;top: 0; cursor: pointer; }
+	.s-item{width: 100px; height: 337px; float: left; text-align: center; line-height: 337px; font-size: 30px;}
+	img{
+		width: 395px;height: 336px;
+	}
+</style>
+<script type="text/javascript" src="js/move.js"></script>
+<script type="text/javascript">
+window.onload=function(){
+    var oBox=document.getElementById('box');
+    var aDiv=oBox.children;
+    for(var i=0;i<aDiv.length;i++){
+        aDiv[i].index=i;
+        aDiv[i].onmouseover=function(){
+            changeDis(this.index);
+        };
+    }
+    changeDis(0);
+    function changeDis(index){
+        for(var i=0;i<aDiv.length;i++){
+            if(i<=index){
+                move(aDiv[i],{left:i*100});
+            }else{
+                move(aDiv[i],{left:i*100+395});
+            }
+        }
+    }
+};
+</script>
+</head>
+<body>
+    <p style="font-size:24px; width:600px; text-align: center; position:absolute; left:50%; margin-left:-300px; top: 20px; z-index: 999;">手风琴效果</p>
+    <div id="box">
+    	<div class="item"><span class="s-item" style="background:#B7DA96";>勇敢</span><img src="img/cdcbd1607c5f61cd94d704402a49d133.jpg"></div>
+    	<div class="item"><span class="s-item" style="background:#99A099";>好学</span><img src="img/f28b2f527b9606f96c7111e3d1fd6806.jpg"></div>
+    	<div class="item"><span class="s-item" style="background:#DE9853";>乐观</span><img src="img/f29aea579d3cf8016787805f9c53bbe3.jpg"></div>
+    	<div class="item"><span class="s-item" style="background:#F4B100";>团结</span><img src="img/fbf2c1d97d9c5dfdd0b05ea5356c4b5c.jpg"></div>
+    </div>
+</body>
+</html>

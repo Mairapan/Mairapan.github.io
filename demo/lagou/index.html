@@ -1,0 +1,119 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="copyright" content="" />
+<meta name="description" content="" />
+<title>仿拉勾网穿墙效果</title>
+<style>
+*{ margin:0; padding:0; list-style:none;}
+#ul1{ width:880px; margin:100px auto;}
+#ul1 li{ width:200px; height:200px; float:left; margin:10px; position:relative; overflow:hidden;}
+#ul1 li img{ width:200px; height:200px; display:
+block;}
+#ul1 li span{ position:absolute; left:-200px; top:0; width:100%; height:100%; background:red; color:#fff; line-height:200px; text-align:center; font-size:30px; font-weight:bold; font-family:微软雅黑; opacity:0.4;}
+</style>
+<script src="js/move.js"></script>
+<script>
+
+function getPos(obj){
+	var left=0;
+	var top=0;
+	while(obj){
+		left+=obj.offsetLeft;
+		top+=obj.offsetTop;
+		obj=obj.offsetParent;
+	}
+	return {l:left,t:top};
+}
+function hoverDir(obj,ev){
+	var y=getPos(obj).t+obj.offsetHeight/2-ev.clientY;
+	var x=getPos(obj).l+obj.offsetWidth/2-ev.clientX;
+	
+	return Math.round((Math.atan2(y,x)*180/Math.PI+180)/90)%4;
+}
+
+window.onload=function(){
+	var oUl=document.getElementById('ul1');
+	var aLi=oUl.children;
+	var aSpan=document.getElementsByTagName('span');
+	var aPos=[];
+	for(var i=0;i<aLi.length;i++){
+		aPos[i]={top:aLi[i].offsetTop,left:aLi[i].offsetLeft};
+	}
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].style.left=aPos[i].left+'px';
+		aLi[i].style.top=aPos[i].top+'px';
+		aLi[i].style.position='absolute';
+		aLi[i].style.margin=0;
+	}
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].index=i;
+		aLi[i].onmouseover=function(ev){
+			var oEvent=ev||event;
+			var oForm=oEvent.fromElement||oEvent.relatedTarget;
+			if(this.contains(oForm))return;
+			var n=hoverDir(this,oEvent);
+			var oSpan=aSpan[this.index];
+			switch(n){
+				case 0:
+					oSpan.style.left='200px';
+					oSpan.style.top=0;
+					break;
+				case 1:
+					oSpan.style.left=0;
+					oSpan.style.top='200px';
+					break;
+				case 2:
+					oSpan.style.left='-200px';
+					oSpan.style.top=0;
+					break;
+				case 3:
+					oSpan.style.left=0;
+					oSpan.style.top='-200px';
+					break;
+			}
+			move(oSpan,{left:0,top:0});
+		};
+		aLi[i].onmouseout=function(ev){
+			var oEvent=ev||event;
+			var oTo=oEvent.toElement||oEvent.relatedTarget;
+			if(this.contains(oTo))return;
+			var n=hoverDir(this,oEvent);
+			var oSpan=aSpan[this.index];
+			switch(n){
+				case 0:
+					move(oSpan,{left:200,top:0});
+					break;
+				case 1:
+					move(oSpan,{left:0,top:200});
+					break;
+				case 2:
+					move(oSpan,{left:-200,top:0});
+					break;
+				case 3:
+					move(oSpan,{left:0,top:-200});
+					break;
+			}
+		};
+	}
+};
+</script>
+</head>
+
+<body>
+<p style="font-size:24px; width:600px; text-align: center; position:absolute; left:50%; margin-left:-300px; top: 20px; z-index: 999;">仿拉勾网穿墙效果</p>
+<ul id="ul1">
+	<li><img src="img/1.jpg"><span>一花一世界</span></li>
+    <li><img src="img/2.jpg"><span>忠诚的伴侣</span></li>
+    <li><img src="img/3.jpg"><span>妖怪</span></li>
+    <li><img src="img/4.jpg"><span>沙发</span></li>
+    <li><img src="img/5.jpg"><span>铁塔</span></li>
+    <li><img src="img/6.jpg"><span>Note</span></li>
+    <li><img src="img/7.jpg"><span>杨幂</span></li>
+    <li><img src="img/8.jpg"><span>奥迪汽车</span></li>
+</ul>
+</body>
+</html>
